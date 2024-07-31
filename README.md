@@ -15,7 +15,7 @@ This Finance Logger Web App is a simple and efficient tool for logging financial
 
 ![finance-logger-img](finance-logger.PNG)
 
-https://hallowdread.github.io/finance-logger/
+https://finance-logger-puce.vercel.app/
 
 ## Installation
 
