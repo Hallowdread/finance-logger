@@ -31,4 +31,14 @@ form.addEventListener('submit', (e: Event) => {
     };
     // 
     list.render(doc, type.value, 'end');
+    // 
+    clear();
+    // 
 });
+
+function clear(){
+    toFrom.value = " ";
+    details.value = " " ;
+    amount.valueAsNumber = 0;
+};
+
