@@ -16,29 +16,89 @@ const ul = document.querySelector('ul')!;
 const list = new ListTemplate(ul);
 
 //? Event Listener 
-form.addEventListener('submit', (e: Event) => {
+document.addEventListener('DOMContentLoaded', getLogs);
+form.addEventListener('submit', logForm);
+
+//? Functions
+function logForm(e: Event) {
     e.preventDefault();
     // 
-    let values:[string, string, number];
-    values = [toFrom.value, details.value, amount.valueAsNumber];
-    // 
-    let doc:HasFormatter;
-    // 
-    if (type.value === 'invoice') {
-        doc = new Invoice(...values);
-    } else {
-        doc = new Payment(...values);
-    };
-    // 
-    list.render(doc, type.value, 'end');
-    // 
-    clear();
-    // 
-});
+   if (toFrom.value, details.value === '') {
+        alert('Fill the inputs');
+   } else { 
+        let logs: {
+            type: string,
+            toFrom: string,
+            details: string,
+            amount: number
+        };
+        // 
+        logs = {
+            type: type.value,
+            toFrom: toFrom.value,
+            details: details.value,
+            amount: amount.valueAsNumber
+        };
+        // 
+        let doc:HasFormatter;
+        // 
+        if (logs.type === 'invoice') {
+            doc = new Invoice(logs.toFrom, logs.details, logs.amount);
+        } else {
+            doc = new Payment(logs.toFrom, logs.details, logs.amount);
+        };
+        // 
+        list.render(doc, logs.type, 'end');
+        // 
+        saveLogs(logs); 
+        // 
+        clear();
+   }
+}
 
 function clear(){
-    toFrom.value = " ";
-    details.value = " " ;
+    toFrom.value = "";
+    details.value = "" ;
     amount.valueAsNumber = 0;
 };
+
+function saveLogs(log: {type: string, toFrom: string, details: string, amount: number}) {
+    let logs:{type: string, toFrom: string, details: string, amount: number}[] = [];
+    // 
+    if (localStorage.getItem('logs') === null) {
+        logs = [];
+    } else {
+        logs = JSON.parse(localStorage.getItem('logs') || "[]");
+    };
+    logs.push(log);
+    localStorage.setItem('logs', JSON.stringify(logs));
+};
+
+
+function getLogs() {
+    // * To check if something is saved in the local storage already
+    let logs: {type: string, toFrom: string, details: string, amount: number}[] = [];
+    // 
+    if (localStorage.getItem('logs') == null) {
+        logs = []; 
+    } else {
+        logs = JSON.parse(localStorage.getItem('logs') || "");
+    };
+
+    // 
+    logs.forEach(log => {
+        let doc:HasFormatter;
+        // 
+        if (log.type === 'invoice') {
+            doc = new Invoice(log.toFrom, log.details, log.amount);
+        } else {
+            doc = new Payment(log.toFrom, log.details, log.amount);
+        };
+        // 
+        list.render(doc, log.type, 'end');
+    });
+};
+
+
+
 
