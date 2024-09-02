@@ -21,19 +21,26 @@ ul{
   list-style-type: none;
 }
 
-li{
+/* li{
   padding: 2rem;
   border: 2px solid #eee;
   margin: 10px auto;
+} */
+
+.log-div{
+  padding: 2rem;
+  border: 2px solid #eee;
+  margin: 10px auto;
+  transition: all 0.5s ease;
 }
 
-li h4{
+.log-div h4{
   color: #ff0aa7;
   margin: 0;
   text-transform: capitalize;
 }
 
-li p{
+.log-div p{
   color: #333;
   margin: 8px 0 0;
 }
@@ -71,15 +78,22 @@ input, select{
   margin: 0 10px;
 }
 
-button{
+.add-btn{
   margin: 1rem;
   color: white;
   border: 0;
   background: #ff0aa7;
   padding: 6px;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   min-width: 80px;
   border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.add-btn:hover {
+  color: #ff0aa7;
+  background: #eee;
+  font-weight: 600;
 }
 
 footer a{
@@ -90,12 +104,48 @@ footer a{
   font-size: 0.7em;
 }
 
+/** Log Styles */
+
 .item-list  {
   font-size: 2rem;
 }
 
 .item-list h4 {
   font-size: 2.1rem;
+}
+
+.logs {
+  display: flex;
+}
+
+p {
+  flex: 1;
+}
+
+/** Log Button */
+.fa-trash{
+  pointer-events: none;
+}
+
+.delete-btn {
+  font-size: 1.7rem;
+  /* padding: 0.2rem 0.9rem; */
+  color: #ff0aa7;
+  background: #f6f6f6;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.delete-btn:hover {
+  color: #8400ff;
+}
+
+/** Event Animations */
+.drop {
+  transform: translateY(9rem);
+  opacity: 0;
 }
 
 @media screen and (max-width: 294px) {
