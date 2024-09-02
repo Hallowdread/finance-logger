@@ -3,21 +3,33 @@ import HasFormatter from "../interfaces/hasFormater.ts";
 export default class ListTemplate {
     constructor(public container: HTMLUListElement){}
     // 
+    // 
     render(item: HasFormatter, heading: string, position: 'start' | 'end') {
-        const li = document.createElement('li');
+        const logDiv = document.createElement('div');
+        logDiv.classList.add('log-div');
         // 
         const h4 = document.createElement('h4');
         h4.innerText = heading;
-        li.append(h4);
+        logDiv.append(h4);
+        // 
+        const div = document.createElement('div');
+        div.classList.add('logs');
         // 
         const p = document.createElement('p');
         p.innerText = item.format();
-        li.append(p);
+        div.append(p);
+        // 
+        const deletBtn = document.createElement('button');
+        deletBtn.classList.add('delete-btn');
+        deletBtn.innerHTML = '<i class="fa-solid fa-trash"></i>';
+        div.append(deletBtn);
+        // 
+        logDiv.append(div);
         // 
         if (position === 'start') {
-            this.container.prepend(li);
+            this.container.prepend(logDiv);
         } else {
-            this.container.append(li);
+            this.container.append(logDiv);
         };
     };
 };
