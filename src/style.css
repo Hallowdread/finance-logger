@@ -144,12 +144,16 @@ p {
   opacity: 0;
 }
 
-@media screen and (max-width: 294px) {
+@media screen and (max-width: 400px) {
   footer{
     padding: 0;
     margin: 0;
   }
   p {
-     font-size: 1.4rem;
+    font-size: 1.4rem;
+ }
+ .clear-btn, 
+ .add-btn {
+  font-size: 1.3rem;
  }
 }
