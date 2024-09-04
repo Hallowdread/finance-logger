@@ -147,5 +147,9 @@ p {
 @media screen and (max-width: 294px) {
   footer{
     padding: 0;
+    margin: 0;
   }
+  p {
+     font-size: 1.4rem;
+ }
 }
