@@ -10,6 +10,7 @@ const type = document.querySelector('#type') as HTMLSelectElement;
 const toFrom = document.querySelector('#tofrom') as HTMLInputElement;
 const details = document.querySelector('#details') as HTMLInputElement;
 const amount = document.querySelector('#amount') as HTMLInputElement;
+const clearBtn = document.querySelector('.clear-btn') as HTMLButtonElement;
 
 //* List Template Instance
 const ul = document.querySelector('ul')!;
@@ -19,6 +20,7 @@ const list = new ListTemplate(ul);
 document.addEventListener('DOMContentLoaded', getLogs);
 form.addEventListener('submit', logForm);
 ul.addEventListener('click', deleteLog);
+clearBtn.addEventListener('click', clearAllLogs);
 
 
 //* Functions
@@ -134,4 +136,10 @@ function removeLocalLog(index:any) {
     logs.splice(logs.indexOf(logIndex), 1);
     localStorage.setItem('logs', JSON.stringify(logs));
     
+};
+
+//* Clear all logs at once
+function clearAllLogs() {
+    ul.remove();
+    localStorage.clear();
 };
